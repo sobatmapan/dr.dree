@@ -1,0 +1,645 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="B2CData Store: หน้าข่าวและประกาศแบบเว็บหน่วยงานการศึกษา จัดหมวดหมู่ชัด อ่านง่าย โหลดเร็ว เหมาะกับ GitHub Pages" />
+  <title>B2CData Store | ข่าวสาร & ประกาศ</title>
+
+  <!-- Domain -->
+  <link rel="canonical" href="https://b2cdata.store/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="B2CData Store | ข่าวสาร & ประกาศ" />
+  <meta property="og:description" content="หน้าเว็บสไตล์ edu/government: ข่าวสารประกาศ ศูนย์รวมลิงก์ และทางลัดบริการภายนอก" />
+  <meta property="og:url" content="https://b2cdata.store/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="okey.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="okey.png">
+  <link rel="apple-touch-icon" href="okey.png">
+  <meta name="twitter:card" content="summary" />
+
+  <!-- Simple schema -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"B2CData Store",
+    "url":"https://b2cdata.store/",
+    "inLanguage":"th",
+    "description":"หน้าเว็บข่าวสารและประกาศสไตล์หน่วยงานการศึกษา พร้อมศูนย์รวมลิงก์"
+  }
+  </script>
+
+  <style>
+    :root{
+      /* ธีม “edu gov” แบบเข้ม-เรียบ + คอนเทนต์ข่าว (แตกต่างโครงสร้างเดิม) */
+      --bg:#f3f6fb;
+      --paper:#ffffff;
+
+      --ink:#0b1b33;
+      --muted:#5a6a84;
+
+      --line:#d7e0ee;
+
+      --edu:#0b3a7a;      /* navy */
+      --edu2:#1558b0;     /* blue */
+      --flag:#b21f2d;     /* red small */
+      --gold:#b8862b;
+
+      --radius:14px;
+      --max: 1160px;
+
+      --shadow: 0 14px 34px rgba(11,27,51,.10);
+      --shadow2: 0 7px 18px rgba(11,27,51,.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans Thai", "Helvetica Neue", Arial;
+      color:var(--ink);
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 35%, var(--bg) 100%);
+      line-height: 1.85;
+    }
+
+    a{color:inherit}
+    a:hover{opacity:.92}
+
+    .container{width:min(var(--max), calc(100% - 44px)); margin:0 auto;}
+
+    /* a11y */
+    .skip{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      position:fixed; left:14px; top:14px;
+      width:auto; height:auto; padding:10px 12px;
+      background:#fff; border:1px solid var(--line);
+      border-radius:12px; box-shadow:var(--shadow);
+      z-index:9999;
+    }
+
+    /* Government bar */
+    .govbar{
+      background: linear-gradient(90deg, var(--edu), #072a52);
+      color:#fff;
+      border-bottom: 4px solid rgba(255,255,255,.14);
+    }
+    .govbar-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:10px 0;
+      font-size:13px;
+    }
+    .govbar .tag{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.10);
+      white-space:nowrap;
+    }
+    .govbar .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg, var(--gold), #fff);
+      box-shadow: 0 0 0 4px rgba(255,255,255,.10);
+    }
+
+    /* Masthead */
+    .masthead{
+      background:#fff;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top:0;
+      z-index:50;
+    }
+    .mast-inner{
+      display:grid;
+      grid-template-columns: 1.1fr 1.4fr;
+      gap:12px;
+      align-items:center;
+      padding: 14px 0;
+    }
+    .identity{
+      display:flex; align-items:center; gap:12px;
+    }
+    .crest{
+      width:52px;height:52px;border-radius: 14px;
+      display:grid;place-items:center;
+      background:
+        radial-gradient(120% 120% at 25% 20%, rgba(255,255,255,.85), rgba(255,255,255,.12)),
+        linear-gradient(135deg, rgba(21,88,176,.16), rgba(11,58,122,.12));
+      border:1px solid var(--line);
+      box-shadow: var(--shadow2);
+      color: var(--edu);
+      font-weight: 1000;
+      letter-spacing: .6px;
+    }
+    .title{
+      font-weight: 1000;
+      letter-spacing: .2px;
+      line-height:1.15;
+    }
+    .subtitle{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+
+    /* Utility search (dummy UI, no JS search) */
+    .tools{
+      display:flex;
+      justify-content:flex-end;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .search{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      box-shadow: var(--shadow2);
+      min-width: min(520px, 100%);
+    }
+    .search input{
+      border:0;
+      outline:none;
+      width:100%;
+      font-size:14px;
+      background:transparent;
+      color: var(--ink);
+    }
+    .search .kbd{
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      border-radius: 8px;
+      padding: 2px 8px;
+      background: rgba(243,246,251,.65);
+      white-space:nowrap;
+    }
+    .toolbtn{
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(11,58,122,.18);
+      background: linear-gradient(180deg, rgba(21,88,176,.10), #fff);
+      box-shadow: var(--shadow2);
+      font-size:14px;
+      font-weight:800;
+      white-space:nowrap;
+    }
+
+    /* Layout: sidebar + news feed (total beda dari sebelumnya) */
+    .layout{
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap: 14px;
+      padding: 16px 0 8px;
+      align-items:start;
+    }
+
+    .panel{
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    .panel h2{
+      margin:0;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, rgba(11,58,122,.06), #fff);
+      border-bottom: 1px solid var(--line);
+      font-size: 16px;
+      letter-spacing: -.1px;
+    }
+    .panel .body{padding: 12px 14px;}
+    .muted{color: var(--muted);}
+
+    /* Quick links (must keep links) */
+    .qlinks{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .qlinks a{
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      box-shadow: 0 8px 16px rgba(11,27,51,.06);
+    }
+    .qlinks a span{
+      color: var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    /* News feed */
+    .feed{
+      background: transparent;
+    }
+    .headline{
+      background: #fff;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      margin-bottom: 12px;
+      position:relative;
+      overflow:hidden;
+    }
+    .headline::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 240px at 15% 0%, rgba(21,88,176,.12), transparent 60%),
+        radial-gradient(900px 240px at 85% 0%, rgba(178,31,45,.08), transparent 60%);
+      pointer-events:none;
+    }
+    .headline > *{position:relative; z-index:1}
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(243,246,251,.7);
+      color: var(--muted);
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    h1{
+      margin: 10px 0 8px;
+      font-size: clamp(22px, 2.6vw, 34px);
+      line-height:1.22;
+      letter-spacing:-.3px;
+    }
+
+    .articles{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    article.post{
+      background:#fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+      padding: 14px;
+    }
+    .post h3{
+      margin:0 0 6px;
+      font-size: 18px;
+      letter-spacing:-.15px;
+    }
+    .post p{margin:0 0 10px; color: var(--muted);}
+    .post .actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--line);
+    }
+    .post .actions a{
+      text-decoration:none;
+      font-weight: 900;
+      color: var(--edu2);
+      border-bottom: 1px dotted rgba(21,88,176,.45);
+    }
+
+    /* Directory list (compact) */
+    .dir{
+      margin:0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .dir li{margin: 6px 0}
+    .dir a{
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: rgba(21,88,176,.30);
+      text-underline-offset: 3px;
+    }
+    .dir a:hover{ text-decoration-color: rgba(178,31,45,.30); }
+
+    /* CTA (must keep link) */
+    .cta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(11,58,122,.18);
+      background: linear-gradient(180deg, rgba(21,88,176,.10), #fff);
+      box-shadow: var(--shadow2);
+      margin-top: 12px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(11,58,122,.22);
+      background: linear-gradient(180deg, rgba(178,31,45,.10), rgba(255,255,255,.92));
+      text-decoration:none;
+      font-weight: 1000;
+      white-space:nowrap;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,.70);
+      padding: 18px 0 34px;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .9fr .6fr;
+      gap: 12px;
+      align-items:start;
+    }
+    .footer-links{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .footer-links a{
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background:#fff;
+      box-shadow: var(--shadow2);
+    }
+    .legal{color: var(--muted); font-size:14px;}
+    .legal a{color: var(--muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(90,106,132,.35)}
+
+    @media (max-width: 980px){
+      .mast-inner{grid-template-columns: 1fr}
+      .search{min-width: 100%}
+      .layout{grid-template-columns: 1fr}
+      .govbar-inner{flex-direction:column; align-items:flex-start}
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#content">ข้ามไปยังเนื้อหา</a>
+
+  <div class="govbar">
+    <div class="container govbar-inner">
+      <div class="tag"><span class="dot"></span> B2CData Store • <strong>Edu / Gov News Portal</strong></div>
+      <div class="tag">ประกาศล่าสุด • ปี <span id="yTop"></span></div>
+    </div>
+  </div>
+
+  <header class="masthead" role="banner">
+    <div class="container mast-inner">
+      <div class="identity" aria-label="Site identity">
+        <div class="crest" aria-hidden="true">B2C</div>
+        <div>
+          <div class="title">B2CData Store</div>
+          <div class="subtitle">ข่าวสาร • ประกาศ • ศูนย์รวมลิงก์ (โครงสร้างสไตล์เว็บการศึกษา/รัฐบาล)</div>
+        </div>
+      </div>
+
+      <div class="tools" aria-label="Tools">
+        <div class="search" role="search" aria-label="Search (UI only)">
+          <input type="search" placeholder="ค้นหาประกาศ/หัวข้อข่าว (ตัวอย่าง UI)" aria-label="Search input" />
+          <span class="kbd">Ctrl / ⌘ K</span>
+        </div>
+        <a class="toolbtn" href="#directory">Directory</a>
+        <a class="toolbtn" href="#cta">CTA</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="content" class="container" role="main">
+    <div class="layout">
+      <!-- SIDEBAR -->
+      <aside>
+        <section class="panel" aria-label="External quick links">
+          <h2>ทางลัดภายนอก</h2>
+          <div class="body">
+            <!-- ต้องคงลิงก์เดิม -->
+            <div class="qlinks">
+              <a href="https://pafiairseruk.org/" target="_blank" rel="noopener noreferrer">Data HK <span>external</span></a>
+              <a href="https://pafitanglad.org/" target="_blank" rel="noopener noreferrer">Data SDY <span>external</span></a>
+              <a href="https://myfilerecovery.net/" target="_blank" rel="noopener noreferrer">Data SGP <span>external</span></a>
+              <a href="https://datahklotto.us/" target="_blank" rel="noopener noreferrer">Data HK Lotto <span>external</span></a>
+              <a href="https://pafiprayabaratdaya.org/" target="_blank" rel="noopener noreferrer">Data SDY Lotto <span>external</span></a>
+              <a href="https://pafiprayatimur.org/" target="_blank" rel="noopener noreferrer">Data SDY Lotto <span>external</span></a>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" style="margin-top:12px" aria-label="Service note">
+          <h2>คำชี้แจง</h2>
+          <div class="body">
+            <p class="muted" style="margin:0">
+              หน้านี้ใช้รูปแบบ “ข่าว/ประกาศ” เพื่อให้ดูเหมือนเว็บหน่วยงานการศึกษา
+              มีแถบทางลัดและรายการ Directory แยกชัดเจน พร้อมปุ่ม CTA สำหรับไปปลายทางหลัก
+            </p>
+          </div>
+        </section>
+      </aside>
+
+      <!-- NEWS FEED -->
+      <section class="feed" aria-label="News and announcements">
+        <div class="headline">
+          <div class="meta">
+            <span class="pill">ข่าวสาร / ประกาศ</span>
+            <span class="pill">อัปเดตหน้า: <span id="today"></span></span>
+            <span class="pill">โดเมน: b2cdata.store</span>
+          </div>
+
+          <h1>ประกาศการจัดระเบียบลิงก์ข้อมูลและแนวทางการใช้งานหน้า Portal</h1>
+          <p class="muted" style="margin:0">
+            เพื่อให้ผู้ใช้งานเข้าถึงแหล่งข้อมูลได้สะดวก หน่วยงานได้ปรับรูปแบบหน้าให้เป็น “ข่าว/ประกาศ”
+            โดยแยกทางลัดภายนอก รายการ Directory และปุ่มทางออกหลักไว้อย่างเป็นระบบ
+            ตัวอย่างการอ้างอิงในเนื้อหา (คงลิงก์เดิม):
+            <a href="https://lamarsalaplayadegandia.com/" target="_blank" rel="noopener noreferrer">Data HK</a>
+          </p>
+        </div>
+
+        <div class="articles">
+          <article class="post">
+            <h3>ข่าวแจ้งเตือน: การใช้งานลิงก์ภายนอกอย่างปลอดภัย</h3>
+            <p>
+              แนะนำให้เปิดลิงก์ภายนอกด้วยการตั้งค่า <code>rel="noopener noreferrer"</code> เพื่อช่วยลดความเสี่ยง
+              และควรเลือกวางลิงก์ในจุดที่มีบริบท ไม่วางถี่เกินไปเพื่อให้หน้าอ่านง่ายเหมาะกับผู้ใช้ทั่วไป
+            </p>
+            <div class="actions">
+              <span class="muted">อ้างอิง: <a href="https://pafisemarapuraklod.org/" target="_blank" rel="noopener noreferrer">Prediksi SDY</a></span>
+              <a href="#directory">ไปที่ Directory</a>
+            </div>
+          </article>
+
+          <article class="post">
+            <h3>แนวทาง: แยก “ทางลัด” และ “รายการทั้งหมด” เพื่อความเป็นระเบียบ</h3>
+            <p>
+              ในหน้าแบบหน่วยงาน นิยมจัดโครงสร้างเป็น 3 ส่วน: (1) ทางลัดภายนอก (2) รายการ Directory ทั้งหมด
+              (3) ปุ่ม CTA เพื่อไปหน้าปลายทางหลัก ช่วยให้ผู้ใช้หาได้เร็ว ลดการเลื่อนหน้าจอ
+            </p>
+            <div class="actions">
+              <span class="muted">ลิงก์ตัวอย่าง: <a href="https://pafiboyolalikota.info/" target="_blank" rel="noopener noreferrer">Angkanet</a></span>
+              <a href="#cta">ดู CTA</a>
+            </div>
+          </article>
+
+          <article class="post" id="directory">
+            <h3>Directory: รายการลิงก์ภายนอก</h3>
+            <p>
+              รายการด้านล่างเป็นลิงก์ภายนอกทั้งหมด (คงเดิม) เพื่อให้ตรวจสอบได้ง่ายและเป็นระบบ
+            </p>
+
+            <!-- ต้องคงลิงก์เดิม -->
+            <ul class="dir">
+              <li><a href="https://airport-parking-quote.co.uk/" target="_blank" rel="noopener">Airport Parking Quote UK</a></li>
+              <li><a href="https://beyondtrends.store/" target="_blank" rel="noopener">Beyond Trends</a></li>
+              <li><a href="https://cave222.org/" target="_blank" rel="noopener">Cave222</a></li>
+              <li><a href="https://digitalgoodies.store/" target="_blank" rel="noopener">Digital Goodies</a></li>
+              <li><a href="https://elvvaws.org/" target="_blank" rel="noopener">ELVVAWS</a></li>
+              <li><a href="https://expressthoughts.site/" target="_blank" rel="noopener">Express Thoughts</a></li>
+              <li><a href="https://feltribute.xyz/" target="_blank" rel="noopener">Fel Tribute</a></li>
+              <li><a href="https://flakey.info/" target="_blank" rel="noopener">Flakey Notes</a></li>
+              <li><a href="https://football-livescore.co.uk/" target="_blank" rel="noopener">Football LiveScore UK</a></li>
+              <li><a href="https://freeflowingthoughts.site/" target="_blank" rel="noopener">Free Flowing Thoughts</a></li>
+              <li><a href="https://genericlevitra-buy.info/" target="_blank" rel="noopener">Generic Levitra Info</a></li>
+              <li><a href="https://healthyvoices.org/" target="_blank" rel="noopener">Healthy Voices</a></li>
+              <li><a href="https://jobseek.us/" target="_blank" rel="noopener">JobSeek US</a></li>
+              <li><a href="https://juicylucyinfo.co.uk/" target="_blank" rel="noopener">Juicy Lucy Info UK</a></li>
+              <li><a href="https://katanaownersclub.co.uk/" target="_blank" rel="noopener">Katana Owners Club UK</a></li>
+              <li><a href="https://kolkataescortsxx.info/" target="_blank" rel="noopener">Kolkata City Notes</a></li>
+              <li><a href="https://laotzu.store/" target="_blank" rel="noopener">Lao Tzu Store</a></li>
+              <li><a href="https://lifestylepulse.site/" target="_blank" rel="noopener">Lifestyle Pulse</a></li>
+              <li><a href="https://longchampbags.uk/" target="_blank" rel="noopener">Longchamp Bags UK</a></li>
+              <li><a href="https://machynllethgolfclub.co.uk/" target="_blank" rel="noopener">Machynlleth Golf Club</a></li>
+              <li><a href="https://mailstorm.biz/" target="_blank" rel="noopener">MailStorm</a></li>
+              <li><a href="https://masjidmekarindah.id/" target="_blank" rel="noopener">Masjid Mekar Indah</a></li>
+              <li><a href="https://michaels-kors.co.uk/" target="_blank" rel="noopener">Michael&#39;s Kors UK</a></li>
+              <li><a href="https://middlefieldma.us/" target="_blank" rel="noopener">Middlefield MA</a></li>
+              <li><a href="https://musclesteroids.info/" target="_blank" rel="noopener">Muscle Steroids Info</a></li>
+              <li><a href="https://mypet24.co.uk/" target="_blank" rel="noopener">MyPet24 UK</a></li>
+              <li><a href="https://portpatrick-brewery.co.uk/" target="_blank" rel="noopener">Portpatrick Brewery</a></li>
+              <li><a href="https://racingshares.co.uk/" target="_blank" rel="noopener">Racing Shares UK</a></li>
+              <li><a href="https://replicamarket.co.uk/" target="_blank" rel="noopener">Replica Market UK</a></li>
+              <li><a href="https://scriblerian.net/" target="_blank" rel="noopener">Scriblerian University</a></li>
+              <li><a href="https://shanbehzadeh.art/" target="_blank" rel="noopener">Shanbehzadeh Art</a></li>
+              <li><a href="https://seafishnottingham.co.uk/" target="_blank" rel="noopener">Sea Fish Nottingham</a></li>
+              <li><a href="https://smallde.com/" target="_blank" rel="noopener">SmallDE</a></li>
+              <li><a href="https://sobattogel.store/" target="_blank" rel="noopener">Sobat Togel</a></li>
+              <li><a href="https://togelonline.space/" target="_blank" rel="noopener">Togel Online</a></li>
+              <li><a href="https://ubbgloucestershire.org/" target="_blank" rel="noopener">UBB Gloucestershire</a></li>
+              <li><a href="https://unitedforcharitableassistance.org/" target="_blank" rel="noopener">United for Charitable Assistance</a></li>
+              <li><a href="https://webmaster-cs.xyz/" target="_blank" rel="noopener">Webmaster CS</a></li>
+              <li><a href="https://webprediksibola.id/" target="_blank" rel="noopener">Web Prediksi Bola</a></li>
+              <li><a href="https://youth-diplomacy.org/" target="_blank" rel="noopener">Youth Diplomacy</a></li>
+              <li><a href="https://jujutsukaisen.io/" target="_blank" rel="noopener">Anoboy</a></li>
+            </ul>
+          </article>
+
+          <article class="post" id="cta">
+            <h3>ทางออกหลัก (CTA)</h3>
+            <p>
+              ปุ่มด้านล่างเป็น “จุดทางออกหลัก” สำหรับส่งผู้ใช้ไปยังหน้าปลายทาง
+              ช่วยให้ประสบการณ์ใช้งานเหมือนเว็บหน่วยงาน: ชัดเจน ตรงจุด และค้นหาได้ง่าย
+            </p>
+
+            <div class="cta">
+              <div>
+                <strong style="color:var(--edu)">Paito SDY</strong><br>
+                <span class="muted" style="font-size:14px">คลิกเพื่อเข้าหน้าปลายทาง</span>
+              </div>
+              <!-- ต้องคงลิงก์เดิม -->
+              <a class="btn" href="http://178.128.215.158/paito-sdy-data-paito-warna-sydney-pools-terbaru/" target="_blank" rel="noopener noreferrer">
+                เปิด Paito SDY
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer" role="contentinfo">
+      <div class="container footer-grid">
+        <div>
+          <div class="title">B2CData Store</div>
+          <p class="muted" style="margin:6px 0 0">
+            หน้า “ข่าว/ประกาศ” สไตล์เว็บหน่วยงานการศึกษา สำหรับโดเมน b2cdata.store
+            พร้อมลิงก์อ้างอิงที่คงเดิม เช่น
+            <a href="https://pafisemarapuraklod.org/" target="_blank" rel="noopener noreferrer">Prediksi SDY</a>
+          </p>
+        </div>
+
+        <div class="footer-links" aria-label="Footer external links">
+          <!-- ต้องคงลิงก์เดิม (ชุดท้าย) -->
+          <a href="https://pafijatimkabmadiun.org/" target="_blank" rel="noopener">Data HK Lotto</a>
+          <a href="https://pafiprayatimur.org/" target="_blank" rel="noopener">Data SDY Lotto</a>
+          <a href="https://pafiairseruk.org/" target="_blank" rel="noopener">Data HK</a>
+          <a href="https://myfilerecovery.net/" target="_blank" rel="noopener">Data SGP</a>
+          <a href="https://pafiprayabarat.org/" target="_blank" rel="noopener">Data SDY</a>
+          <a href="https://lamarsalaplayadegandia.com/" target="_blank" rel="noopener">Data HK</a>
+          <a href="https://pafiprayabaratdaya.org/" target="_blank" rel="noopener">Data SDY Lotto</a>
+          <a href="https://wholesalejerseys4sale.com/" target="_blank" rel="noopener">Prediksi Keluaran</a>
+          <a href="https://pafibenermeriahkabupaten.org/" target="_blank" rel="noopener">Prediksi Jitu</a>
+          <a href="https://pafisemarapuraklod.org/" target="_blank" rel="noopener">Prediksi SDY</a>
+          <a href="https://prediksihkpools.net/" target="_blank" rel="noopener">Prediksi HK</a>
+          <a href="http://178.128.215.158/" target="_blank" rel="noopener">Angkanet</a>
+          <a href="https://pafiboyolalikota.info/" target="_blank" rel="noopener">Angkanet</a>
+          <a href="https://pafiblitarkota.info/" target="_blank" rel="noopener">Data HK 6D</a>
+        </div>
+
+        <div class="legal">
+          <div><a href="/privacy.html">Privacy Policy</a> (buat file jika diperlukan)</div>
+          <div>© <span id="y"></span> b2cdata.store</div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const y = new Date().getFullYear();
+    document.getElementById('y').textContent = y;
+    document.getElementById('yTop').textContent = y;
+
+    // tampilkan tanggal “วันนี้” แบบง่าย
+    const d = new Date();
+    document.getElementById('today').textContent =
+      d.toLocaleDateString('th-TH', { year:'numeric', month:'long', day:'numeric' });
+  </script>
+</body>
+</html>
